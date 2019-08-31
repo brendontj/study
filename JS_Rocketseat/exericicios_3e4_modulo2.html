@@ -1,0 +1,66 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title> Exercicio 3</title>
+
+    </head>
+
+    <body>
+
+        <style>
+            .botao {
+                height: 100px;
+                width: 100px;
+            }
+        </style>
+        
+        <div id="first_div">
+           
+        </div>
+
+        <div id="second_div">
+                <input type="text" name="entrada">
+                <button class="botao" id="botao_input"> Click Me </button>
+        </div>
+
+
+        <script>
+            
+            var nomes = ["Diego", "Gabriel", "Lucas"];
+
+            var container =  document.getElementById("first_div");
+
+            var list = document.createElement("ul");
+
+            for (var i = 0; i < nomes.length; ++i) {
+                var newElement = document.createElement("li");               
+                var textElement = document.createTextNode(nomes[i]);
+                newElement.appendChild(textElement);
+                list.appendChild(newElement);
+                list.setAttribute('id','myList');
+            }
+            container.appendChild(list);
+
+
+            var elementButton = document.getElementById("botao_input");
+
+            elementButton.onclick = function () {
+                var elementToAdd = document.querySelector("body div#second_div input").value;
+                console.log(elementToAdd);
+                var newElement = document.createElement("li");               
+                var textElement = document.createTextNode(elementToAdd);
+                var lista = document.getElementById('myList');
+
+                newElement.appendChild(textElement);
+                lista.appendChild(newElement);
+                
+                var containerNew = document.getElementById("first_div");
+                containerNew.appendChild(lista);
+
+            }
+            
+
+        
+        </script>
+    </body>
+</html>

@@ -1,0 +1,53 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title> Curso JS Manipulando o DOM </title>
+
+</head>
+
+<body>
+
+    <div id="app">
+        <button id="btn"> Click Me </button>
+
+    </div>
+
+    <script>
+
+        function getRandomColor() { 
+            var letters = "0123456789ABCDEF";
+             var color = "#"; 
+             for (var i = 0; i < 6; i++) { 
+                 color += letters[Math.floor(Math.random() * 16)];
+                }
+            return color; 
+        } 
+
+        var btnFirstEx = document.getElementById("btn");
+
+        btnFirstEx.onclick = function () {
+
+
+            var container = document.querySelector("body div#app");
+            var newElement = document.createElement("div");
+            newElement.classList.add('newstyle');
+
+            newElement.style.height = 100;
+            newElement.style.width = 100;
+            newElement.style.backgroundColor = 'red';
+
+            newElement.onmouseover = function () {
+                var newColor = getRandomColor();
+                newElement.style.backgroundColor = newColor;
+            }
+
+            
+            container.appendChild(newElement);
+
+        }
+
+    </script>
+</body>
+
+</html>
