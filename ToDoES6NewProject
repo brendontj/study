@@ -1,0 +1,15 @@
+Babel: Converter código ES6,7,8 para Js pré ES6
+Webpack: Servidor para ter uma especie de live code (servidor de desenvolvimento)
+Yarn: Gerenciador de pacotes Js , que permite que seja possivel adicionar e trabalhar com pacotes desenvolvidos por terceiros na 
+nossa aplicação
+
+-Quando for iniciar um novo projeto dê:
+ yarn init
+
+-Após isso de para trabalhar com interface de linha de comando do babel
+ yarn add @babel/cli
+
+-Após isso de 
+ yarn add @babel/preset-env
+
+ yarn add @babel/core

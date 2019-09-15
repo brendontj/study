@@ -1,7 +1,7 @@
 {
   "name": "JS_ES6",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "main.js",
   "license": "MIT",
   "devDependencies": {
     "@babel/cli": "^7.5.5",
@@ -17,5 +17,8 @@
   },
   "scripts": {
     "dev": "webpack-dev-server --mode=development"
+  },
+  "dependencies": {
+    "axios": "^0.19.0"
   }
 }
