@@ -1,8 +1,9 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+#include <string>
 
-const double pi = 3.1415;
+constexpr double pi = 3.1415;
 
 struct Pizza
 {
@@ -17,9 +18,9 @@ int main()
 {
 
     std::vector<Pizza> pizzas = {
-        {0.5 * 0.25, 7.49, "Dominos", "s"},
-        {0.5 * 0.28, 8.99, "Dominos", "m"},
-        {0.5 * 0.32, 10.99, "Dominos", "l"},
+        {0.5 * 0.25, 47.49, "Dominos", "s"},
+        {0.5 * 0.28, 88.99, "Dominos", "m"},
+        {0.5 * 0.32, 110.99, "Dominos", "l"},
         {0.5 * 0.20, 4.00, "BistroAnanas", "s"},
         {0.5 * 0.25, 5.90, "BistroAnanas", "m"},
         {0.5 * 0.30, 7.50, "BistroAnanas", "l"},
@@ -35,11 +36,6 @@ int main()
         {0.5 * 0.26, 5.70, "Mardino", "m"},
         {0.5 * 0.30, 7.30, "Mardino", "l"}};
 
-    // for(auto it = pizzas.begin(); it != pizzas.end(); ++it ) {
-    //         *it.area = *it.radius * *it.radius *pi;
-    //         *it.areaPerPrice = *it.area / *it.price;
-    //     }
-
     for (auto &p : pizzas)
     {
         p.area = p.radius * p.radius * pi;
@@ -47,13 +43,31 @@ int main()
     }
 
     // sort by price
-    std::sort(pizzas.begin(), pizzas.end(), 
-            [](Pizza a, Pizza b) {
-                return a.areaPerPrice < b.areaPerPrice; 
-                }
-        );
+    std::sort(pizzas.begin(), pizzas.end(), [](Pizza a, Pizza b){return a.areaPerPrice > b.areaPerPrice;});
 
-    // Continue
+    for (int i = 0; i < 3; ++i)
+    {
+        const auto &p = pizzas[i];
+        std::cout << p.restaurant << " " << p.size << std::endl;
+    }
 
+    std::string findRestaurant = "SanRemo";
+
+    std::cout << "Type a restaurant name to search for: ";
+    std::cin >> findRestaurant;
+
+    auto it = std::find_if(pizzas.begin(), pizzas.end(), [&findRestaurant](Pizza p) { return p.restaurant == findRestaurant; });
+
+    if (it == pizzas.end()) {
+        std::cout << "Restaurant " << findRestaurant << " is not in the ranking " << std::endl;
+        return 0;
+    }
+
+    std::cout << "The cheapest pizza of " << findRestaurant << " has position " 
+            << std::distance(pizzas.begin(), it) << " in the ranking" << std::endl;
+
+    std::cout << "\tName: " << it->size << std::endl;
+    std::cout << "\tPrice: " << it->price << std::endl;
+    std::cout << "\tRadius: " << it->radius << std::endl;
     return 0;
 }

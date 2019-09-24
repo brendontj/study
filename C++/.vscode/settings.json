@@ -40,7 +40,8 @@
         "stdexcept": "cpp",
         "streambuf": "cpp",
         "typeinfo": "cpp",
-        "hash_map": "cpp"
+        "hash_map": "cpp",
+        "ctime": "cpp"
     },
     "C_Cpp.errorSquiggles": "Disabled"
 }

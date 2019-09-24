@@ -1,44 +1,64 @@
 #include <iostream>
 #include <cstdlib>
-#include <ctime>
+#include <vector>
+
 
 int main () {
 
-    const int numberOfPlayers;
-    int player = 1;
-    std::srand(std::time(nullptr));
-
-
-    std::cout << "Enter with the nuber of players!";
+    int numberOfPlayers;
+    
+    std::cout << "Enter with the nuber of players!" << std::endl;
     std::cin >> numberOfPlayers;
 
+    std::vector <int> sumOfPlay(numberOfPlayers+1);
 
-    while(1){
+    for(int i = 0; i < numberOfPlayers;++i) {
 
-        std::out << "NEXT TURN: Player " << player <<std::endl;
-        int sumOfPlay = 0;
-        int randomDiceValue = std::rand();
-        int continueOrNot;
+        std::cout << "NEXT TURN: Player " << i+1 <<std::endl;
+        
+        int randomDiceValue = (std::rand() % 6) + 1;
+        std::string continueOrNot;
         // fix the randomDiceValue
 
-        sumOfPlay += randomDiceValue;
-        std::cout << "You rolled a " << randomDiceValue << "! Score:" << sumOfPlay << std::endl;
+        sumOfPlay[i] += randomDiceValue;
+        std::cout << "You rolled a " << randomDiceValue << "! Score:" << sumOfPlay[i] << std::endl;
         std::cout << "Roll the dice again? Press 'y' to continue or any other key to quit." << std::endl;
-
         std::cin >> continueOrNot;
 
-        while (continueOrNot == 121 || sumOfPlay >) {
+        while ((continueOrNot == "y") && (sumOfPlay[i] < 9 )) {
+            randomDiceValue = (std::rand() % 6) + 1;
+            sumOfPlay[i] += randomDiceValue;
+            std::cout << "You rolled a " << randomDiceValue << "! Score:" << sumOfPlay[i] << std::endl;
 
-
+            if (sumOfPlay[i] > 9) {
+                std::cout << "YOU LOSE!" << std::endl;
+                break;
+            }
+            std::cout << "Roll the dice again? Press 'y' to continue or any other key to quit." << std::endl;
+            std::cin >> continueOrNot;
         }
 
+        std::cout << "Your final score is: " << sumOfPlay[i] << std::endl;
+    }
+
+    int betterPlayer = numberOfPlayers;
+    bool findTheWinner = false;
+    for (int j = 0 ; j<numberOfPlayers; ++j) {
+        if (sumOfPlay[j] == 9) {
+            findTheWinner = true;
+            std::cout << "Player " << j+1 << " has won with a score of " << sumOfPlay[j] << "!" << std::endl;
+        }
+        else if (!findTheWinner){
+            if ((sumOfPlay[j] > sumOfPlay[betterPlayer]) && (sumOfPlay[j] < 9)){
+                betterPlayer = j;
+            }
+        }
 
     }
 
-    
+    if (!findTheWinner) {
+        std::cout << "Player " << betterPlayer+1 << " has won with a score of " << sumOfPlay[betterPlayer] << "!" << std::endl;
+    }
 
-
-
-
-
+    return 0;
 }
