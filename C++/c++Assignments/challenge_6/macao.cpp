@@ -3,9 +3,20 @@
 #include <vector>
 
 
+void doPlay( const int player, std::vector <int> &playerSum){
+        int randomDiceValue = (std::rand() % 6) + 1;
+        playerSum[player] += randomDiceValue;
+        std::cout << "You rolled a " << randomDiceValue << "! Score:" << playerSum[player] << std::endl;
+}
+
+void playAgain() {
+     std::cout << "Roll the dice again? Press 'y' to continue or any other key to quit." << std::endl;
+}
+
 int main () {
 
     int numberOfPlayers;
+    std::string continueOrNot;
     
     std::cout << "Enter with the nuber of players!" << std::endl;
     std::cin >> numberOfPlayers;
@@ -13,28 +24,22 @@ int main () {
     std::vector <int> sumOfPlay(numberOfPlayers+1);
 
     for(int i = 0; i < numberOfPlayers;++i) {
+        doPlay(i,sumOfPlay);
 
         std::cout << "NEXT TURN: Player " << i+1 <<std::endl;
-        
-        int randomDiceValue = (std::rand() % 6) + 1;
-        std::string continueOrNot;
-        // fix the randomDiceValue
+        playAgain();
 
-        sumOfPlay[i] += randomDiceValue;
-        std::cout << "You rolled a " << randomDiceValue << "! Score:" << sumOfPlay[i] << std::endl;
-        std::cout << "Roll the dice again? Press 'y' to continue or any other key to quit." << std::endl;
+        
         std::cin >> continueOrNot;
 
         while ((continueOrNot == "y") && (sumOfPlay[i] < 9 )) {
-            randomDiceValue = (std::rand() % 6) + 1;
-            sumOfPlay[i] += randomDiceValue;
-            std::cout << "You rolled a " << randomDiceValue << "! Score:" << sumOfPlay[i] << std::endl;
-
+            
+            doPlay(i,sumOfPlay);
             if (sumOfPlay[i] > 9) {
                 std::cout << "YOU LOSE!" << std::endl;
                 break;
             }
-            std::cout << "Roll the dice again? Press 'y' to continue or any other key to quit." << std::endl;
+            playAgain();
             std::cin >> continueOrNot;
         }
 

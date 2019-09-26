@@ -9,13 +9,25 @@
 using std::vector;
 
 
-int add (int a, int b) { 
+int add (const int a,const int b) { 
     return a + b ;
 }
+void matReduce (const vector <vector<int>> m, int &red,const std::function<int(int,int)> pf) {
 
+    for(auto& r: m){
+        for(auto& c: r){
+            red = pf(red, c);
+        }
+    }
+}
 
-void matReduce (vector<vector<int>> m, int &red, std::function<int(int,int)> pf) {
-
+void printMatrix (const vector <vector<int>> m) {
+    for(auto& r: m){
+        for(auto& c: r) {
+            std::cout << c << " " << std::endl;
+        }
+        std::cout << std::endl;
+    }
 }
 
 int main () {
@@ -23,28 +35,20 @@ int main () {
     int rSizeRR = (std::rand() % RANDOMMAX) + 1;
     int rSizeCC = (std::rand() % RANDOMMAX) + 1;
 
-    vector < vector <int>> matrix ;
+    vector<vector<int>> matrix ;
 
     for (int i = 0; i < rSizeRR; ++i) {
         vector<int> auxVector;
-
         for (int j = 0; j < rSizeCC; ++j) {
-
             auxVector.push_back((std::rand() % RANDOMMAX) + 1);
         }
         matrix.push_back(auxVector);
     }
 
-    for (int i = 0; i < rSizeRR; i++) {
-        for (int j = 0; j < rSizeCC ;j ++) {
-            std::cout << matrix[i][j] << ' ' ;
-        }
-        std::cout << std::endl;
-    }
-
-     
-
-
+    int sum = 0;
+    matReduce(matrix,sum, add);
+    std::cout << sum <<std::endl;
+    // printMatrix(matrix);
+    
 return 0;
-
 }
