@@ -18,5 +18,7 @@ int main()
 
     Matrix t = m.addM(d);
     // cout << m.getVal(0, 0) << std::endl;
-    t.printM();
+
+    Matrix k(t);
+    k.printM();
 }

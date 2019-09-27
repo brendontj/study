@@ -24,6 +24,20 @@ Matrix::Matrix(int n, int m)
     }
 }
 
+Matrix::Matrix(const Matrix& a) {
+    this->rowSize = a.rowSize;
+    this->colSize = a.colSize;
+
+    for (int i = 0; i < this->rowSize; ++i) {
+
+        vector<double> aux (this->colSize);
+        for (int j = 0; j <this->colSize; ++j) {
+            aux[j] = a.vals[i][j];
+        }
+        this->vals.push_back(aux);
+    }
+} 
+
 void Matrix::setVal(double value, int r, int c)
 {
     this->vals[r][c] = value;
@@ -55,6 +69,20 @@ Matrix Matrix::addM( Matrix a) {
     }
 
     return b;
+
+}
+
+Matrix& Matrix::operator=(const Matrix &other) {
+
+    this->rowSize = other.rowSize);
+    this->colSize = other.colSize);
+
+    for (int i = 0; i < this->rowSize; ++i){
+        for (int j = 0; j < this->colSize; ++j) {
+            this->
+        }
+    }
+    
 
 }
 

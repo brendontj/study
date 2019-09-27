@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <iomanip>
+#include "matrix.h"
 
 #define n_size 10
 #define m_size 20
