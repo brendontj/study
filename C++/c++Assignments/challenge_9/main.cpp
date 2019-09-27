@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <iomanip>
 
 #define n_size 10
 #define m_size 20
@@ -52,7 +53,8 @@ class Matrix {
             
             for(auto& r: this->vals){
                 for(auto& c: r) {
-                    cout << c << ' ';
+                    cout << std::setw(4);
+                    cout << std::setprecision(3) << c << ' ';
                 }
                 cout << std::endl;
             }

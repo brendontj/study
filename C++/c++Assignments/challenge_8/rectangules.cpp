@@ -20,18 +20,18 @@ void printSystem(vector<string> cS) {
 
 void startSystem(vector<string> &cS) {
 
-    cS[0].assign(26,' ');
+    cS[0].assign(45,' ');
     cS[0][12] = ('1');
     cS[0][13] = ('0');
-    cS[1].assign(23,' ');
+    cS[1].assign(45,' ');
     cS[1][12] = ('^');
 
     cS[10].assign("-10---------0--------->10");
 
     for (int i = 2,j= 11; i< 10 && j < 21; ++i,++j) {
-        cS[i].assign(26,' ');
+        cS[i].assign(45,' ');
         cS[i][12] = ('|');
-        cS[j].assign(26,' ');
+        cS[j].assign(45,' ');
         cS[j][12] = ('|');
     }
 

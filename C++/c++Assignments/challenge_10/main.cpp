@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <assert.h>
 
 #define n_size 10
 #define m_size 20
@@ -28,6 +29,28 @@ class Matrix {
             
             return vals[i][j];
         }
+
+        int getRowSize (){
+            return this->rowSize;
+        }
+        int getColSize() {
+            return this->colSize;
+        }
+
+        Matrix& operator+(const Matrix& a) {
+            
+                     
+                assert( this->rowSize == a.rowSize);
+                assert( this->colSize == a.colSize);
+                
+                for(int i = 0; this->rowSize; ++i){
+                    for(int j = 0; this->colSize; ++j ){
+                        this->vals[i][j] += a.vals[i][j] ;
+                    }
+                }
+            return *this;
+        }
+
 };
     Matrix::Matrix(int n, int m) {
 
@@ -43,14 +66,6 @@ class Matrix {
                 
             }             
         }
-
-        // void Matrix::setVal(double value, int r, int c) {
-        //     this->vals[r][c] = value;
-        // }
-
-        // double Matrix::getVal(int r, int c) {
-        //     return this->vals[r][c];
-        // }
 
 
     void Matrix::printM (){
@@ -68,9 +83,14 @@ class Matrix {
 int main() {
     Matrix m(n_size,m_size);
     m(0,0) = 10;
-    double t = m(0,0);
-    cout << t << std::endl;
-    m.printM();
+    // double t = m(0,0);
+    // cout << t << std::endl;
+    // m.printM();
+
+     Matrix d(n_size,m_size);
+     d(0,0) = 20.3;
+     m = m + d;
+     m.printM();
 }
 
 
